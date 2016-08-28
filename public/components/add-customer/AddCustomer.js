@@ -18,8 +18,16 @@
                     {name: 'Cryptography advice'}
                 ];
 
-                scope.addCustomer = function(){
+                scope.add = function(){
+                    $http({
+                        method: 'POST',
+                        url: '/api/customer/add',
+                        data: scope.customer
 
+                    }).then(function(res){
+                        scope.onAdded()();
+                        scope.customer = {};
+                    })
                 }
             }
         }

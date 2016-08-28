@@ -1,8 +1,10 @@
 <div class="AddCustomer">
-    <input type="text" placeholder="Name" ng-model="name"/>
-    <select ng-options="product.name for product in products" ng-model="product" placeholder="Product">
-        <option value="">Choose Product</option>
-    </select>
-    <button ng-click="add()">Add</button>
+    <form name="customerForm">
+        <input type="text" placeholder="Name" ng-model="customer.name" ng-required="true"/>
+        <select ng-options="product.name for product in products" ng-model="customer.product" placeholder="Product" ng-required="true">
+            <option value="">Choose Product</option>
+        </select>
+        <button ng-click="add()" ng-disabled="customerForm.$invalid">Add</button>
+    </form>
 </div>
 
