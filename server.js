@@ -20,6 +20,7 @@ function serveCustomer(id){
     customers = customers.filter(function(customer){
         if(customer.id == id){
             customer.status = 'served';
+            customer.servedTime = new Date().toString();
             servedCustomers.push(customer);
             return false;
         }else{
@@ -30,6 +31,7 @@ function serveCustomer(id){
 
 function addCustomer(customer){
     customer.id = uuid.v4();
+    customer.joinedTime = new Date().toString();
     customers.push(customer);
 }
 

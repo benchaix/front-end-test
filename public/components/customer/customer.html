@@ -1,6 +1,8 @@
 <div class="Customer">
     <span>{{ customer.name }}</span>
     <span>{{ customer.product.name }}</span>
-    <span>{{ customer.queuedTime }}</span>
-    <button ng-click="remove()">Remove</button>
+    <span ng-show="!isServed"> {{days}} : days, {{hours}} : hours, {{minutes}} : minutes, {{seconds}} : seconds </span>
+    <span ng-show="isServed">Served Time: {{ customer.servedTime }} </span>
+    <button ng-click="remove()"ng-show="!isServed">Remove</button>
+    <button ng-click="serve()" ng-show="!isServed">Served</button>
 </div>
