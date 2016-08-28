@@ -48,7 +48,7 @@
                         params: {id: scope.customer.id}
                     }).then(function(res){
                         scope.onRemoved()();
-                    })
+                    });
                 };
 
                 scope.serve = function() {
@@ -58,11 +58,11 @@
                         data: {id: scope.customer.id}
                     }).then(function(res){
                         scope.onServed()();
-                    })
+                    });
                 };
             }
-        }
+        };
     }
 
-})()
+})();
 

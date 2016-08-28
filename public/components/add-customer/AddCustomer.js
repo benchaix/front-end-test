@@ -27,11 +27,11 @@
                     }).then(function(res){
                         scope.onAdded()();
                         scope.customer = {};
-                    })
-                }
+                    });
+                };
             }
-        }
+        };
     }
 
-})()
+})();
 

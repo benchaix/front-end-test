@@ -3,27 +3,33 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Queue App</title>
-    <script src="/bower_components/angularjs/angular.min.js"></script>
-    <script src="/QueueApp.js"></script>
-    <script src="/components/queue/QueueController.js"></script>
-    <script src="/components/customer/Customer.js"></script>
-    <script src="/components/add-customer/AddCustomer.js"></script>
+    <link rel="stylesheet" href="./css/all.css">
+    <script src="./bower_components/angularjs/angular.min.js"></script>
+    <script src="./js/all.js"></script>
 </head>
 <body class="Queue" ng-app="qudini.QueueApp" ng-controller="QueueController">
 
-   <h2>Add Customer</h2>
-    <add-customer on-added="onCustomerAdded"></add-customer>
-    <h2>Queueing Customers</h2>
-    <ul class="Queue-customer-list">
-        <li ng-repeat="customerData in customers">
-            <customer customer="customerData" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
-        </li>
-    </ul>
-    <h2>Served customers</h2>
-    <ul class="Queue-customer-served-list">
-        <li ng-repeat="customerData in customersServed">
-            <customer customer="customerData" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
-        </li>
-    </ul>
+    <div class="content">
+        <h2>Add Customer</h2>
+        <add-customer on-added="onCustomerAdded"></add-customer>
+    </div>
+
+    <div class="content">
+        <h2>Queueing Customers</h2>
+        <ul class="Queue-customer-list">
+            <li ng-repeat="customerData in customers">
+                <customer customer="customerData" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>Served customers</h2>
+        <ul class="Queue-customer-served-list">
+            <li ng-repeat="customerData in customersServed">
+                <customer customer="customerData" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
+            </li>
+        </ul>
+    </div>
 </body>
 </html>

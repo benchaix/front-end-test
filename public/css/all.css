@@ -1,0 +1,23 @@
+body {
+  font-color: #999999; }
+
+.content {
+  background-color: #f1f1f1;
+  border: 1px solid gray;
+  padding: 20px;
+  margin-bottom: 10px; }
+
+.Customer {
+  padding-bottom: 10px; }
+
+.customerLabel {
+  color: #000000;
+  font-weight: bold; }
+
+.productLabel {
+  font-style: italic; }
+
+button {
+  padding: 5px 10px;
+  background-color: #cccccc;
+  color: #000000; }
