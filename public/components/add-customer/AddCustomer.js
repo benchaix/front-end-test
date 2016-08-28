@@ -1,7 +1,7 @@
 (function () {
-    angular.module('qudini.QueueApp')
-        .directive('addCustomer', AddCustomer)
-
+    angular
+        .module('directives')
+        .directive('addCustomer', AddCustomer);
 
     function AddCustomer($http){
         return {
@@ -9,7 +9,7 @@
             scope:{
                 onAdded: '&'
             },
-            templateUrl:'/add-customer/add-customer.html',
+            templateUrl:'/components/add-customer/add-customer.html',
             link: function(scope){
 
                 scope.products = [
