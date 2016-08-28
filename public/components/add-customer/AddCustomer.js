@@ -1,9 +1,7 @@
 (function () {
-    angular
-        .module('directives')
-        .directive('addCustomer', AddCustomer);
+    angular.module('qudini.QueueApp')
+        .directive("addCustomer", ["$http", function($http) {
 
-    function AddCustomer($http){
         return {
             restrict: 'E',
             scope:{
@@ -31,7 +29,7 @@
                 };
             }
         };
-    }
-
+    }]);
 })();
+
 

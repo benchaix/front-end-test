@@ -1,57 +1,8 @@
 (function() {
-    angular
-        .module('qudini.QueueApp', ['controllers', 'services', 'constants', 'directives']);
-    angular
-        .module('controllers', []);
-    angular
-        .module('services', []);
-    angular
-        .module('constants', []);
-    angular
-        .module('directives', []);
-})();
-(function () {
-    angular
-        .module('directives')
-        .directive('addCustomer', AddCustomer);
-
-    function AddCustomer($http){
-        return {
-            restrict: 'E',
-            scope:{
-                onAdded: '&'
-            },
-            templateUrl:'/components/add-customer/add-customer.html',
-            link: function(scope){
-
-                scope.products = [
-                    {name: 'Grammatical advice'},
-                    {name: 'Magnifying glass repair'},
-                    {name: 'Cryptography advice'}
-                ];
-
-                scope.add = function(){
-                    $http({
-                        method: 'POST',
-                        url: '/api/customer/add',
-                        data: scope.customer
-
-                    }).then(function(res){
-                        scope.onAdded()();
-                        scope.customer = {};
-                    });
-                };
-            }
-        };
-    }
+    angular.module('qudini.QueueApp', []);
 
 })();
-
-
 (function () {
-    angular
-        .module('directives')
-        .directive('customer', Customer);
 
     /**
      * The <customer> directive is responsible for:
@@ -59,7 +10,8 @@
      * - calculating queued time
      * - removing customer from the queue
      */
-    function Customer($http, $interval){
+    angular.module('qudini.QueueApp')
+        .directive("customer", ["$http", "$interval", function($http, $interval) {
 
         return{
             restrict: 'E',
@@ -112,46 +64,77 @@
                 };
             }
         };
-    }
-
+    }]);
 })();
 
 
+(function () {
+    angular.module('qudini.QueueApp')
+        .directive("addCustomer", ["$http", function($http) {
+
+        return {
+            restrict: 'E',
+            scope:{
+                onAdded: '&'
+            },
+            templateUrl:'/components/add-customer/add-customer.html',
+            link: function(scope){
+
+                scope.products = [
+                    {name: 'Grammatical advice'},
+                    {name: 'Magnifying glass repair'},
+                    {name: 'Cryptography advice'}
+                ];
+
+                scope.add = function(){
+                    $http({
+                        method: 'POST',
+                        url: '/api/customer/add',
+                        data: scope.customer
+
+                    }).then(function(res){
+                        scope.onAdded()();
+                        scope.customer = {};
+                    });
+                };
+            }
+        };
+    }]);
+})();
+
+
+
 (function() {
-    angular
-        .module('controllers')
-        .controller('QueueController', QueueController);
-
-    function QueueController($scope, $http) {
-
-        $scope.customers = [];
-        $scope.customersServed = [];
-        _getCustomers();
-        _getServedCustomers();
-
-        $scope.onCustomerAdded = function(){
-            _getCustomers();
-        };
-
-        $scope.onCustomerRemoved = function(){
-            _getCustomers();
-        };
-
-        $scope.onCustomerServed = function(){
+    angular.module('qudini.QueueApp')
+        .controller("QueueController", ["$scope", "$http", function($scope, $http) {
+            $scope.customers = [];
+            $scope.customersServed = [];
             _getCustomers();
             _getServedCustomers();
-        };
 
-        function _getServedCustomers(){
-            return $http.get('/api/customers/served').then(function(res){
-                $scope.customersServed = res.data;
-            });
-        }
+            $scope.onCustomerAdded = function(){
+                _getCustomers();
+            };
 
-        function _getCustomers(){
-            return $http.get('/api/customers').then(function(res){
-                $scope.customers = res.data;
-            });
-        }
-    }
+            $scope.onCustomerRemoved = function(){
+                _getCustomers();
+            };
+
+            $scope.onCustomerServed = function(){
+                _getCustomers();
+                _getServedCustomers();
+            };
+
+            function _getServedCustomers(){
+                return $http.get('/api/customers/served').then(function(res){
+                    $scope.customersServed = res.data;
+                });
+            }
+
+            function _getCustomers(){
+                return $http.get('/api/customers').then(function(res){
+                    $scope.customers = res.data;
+                });
+            }
+        }]);
 })();

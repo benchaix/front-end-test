@@ -1,7 +1,4 @@
 (function () {
-    angular
-        .module('directives')
-        .directive('customer', Customer);
 
     /**
      * The <customer> directive is responsible for:
@@ -9,7 +6,8 @@
      * - calculating queued time
      * - removing customer from the queue
      */
-    function Customer($http, $interval){
+    angular.module('qudini.QueueApp')
+        .directive("customer", ["$http", "$interval", function($http, $interval) {
 
         return{
             restrict: 'E',
@@ -62,7 +60,6 @@
                 };
             }
         };
-    }
-
+    }]);
 })();
 
