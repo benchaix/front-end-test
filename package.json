@@ -20,7 +20,8 @@
     "jshint": "^2.9.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "protractor protractor.conf.js"
   },
   "author": "Ben",
   "license": "ISC"
